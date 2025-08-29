@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>저년차 소방공무원 대상 설문조사</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .form-section {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-section h2, .form-section h3 {
+            color: #118AB2; /* Energetic & Playful palette - Blue */
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        input[type="text"], input[type="number"], select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+            margin-top: 0.25rem;
+        }
+        .radio-group label, .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .styled-table th, .styled-table td {
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .styled-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+        .styled-table td input[type="radio"] {
+            margin: 0 auto;
+            display: block;
+        }
+        .likert-scale-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#073B4C] mb-2">저년차 소방공무원 대상 설문조사</h1>
+            <p class="text-gray-600 text-lg">직무만족, 자존감, 우울감에 영향을 미치는 요인 분석</p>
+        </header>
+
+        <form id="firefighterSurveyForm" class="space-y-6" action="https://script.google.com/macros/s/AKfycbweNxv0e60HizWEZxYl_ShD81tg9pT-B3RimUoBtfzsUmQVMPNDj_yCHeVwMhgdvm0C/exec" method="POST" target="no-submit-iframe">
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 1. 인구통계학적 및 기본 정보</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 기본적인 정보에 관한 질문입니다.</p>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="gender">1. 성별:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="gender" value="male" required> 남성</label>
+                        <label><input type="radio" name="gender" value="female"> 여성</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="age">2. 만 나이:</label>
+                    <input type="number" id="age" name="age" min="19" max="60" class="w-full border-gray-300 rounded-md" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="years_of_service">3. 소방 임용 년차:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="years_of_service" value="1" required> 1년차</label>
+                        <label><input type="radio" name="years_of_service" value="2"> 2년차</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="marital_status">4. 결혼 여부:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="marital_status" value="single" required> 미혼</label>
+                        <label><input type="radio" name="marital_status" value="married"> 기혼</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="children_count">5. 총 자녀 수 (자녀가 없는 경우 '0'으로 기입):</label>
+                    <input type="number" id="children_count" name="children_count" min="0" class="w-full border-gray-300 rounded-md" required>
+                </div>
+
+                <div id="childcare_questions" class="hidden">
+                    <h3 class="text-xl font-bold mt-6 mb-4">자녀 양육 및 교육 관련</h3>
+                    <div class="mb-4">
+                        <label class="block text-gray-800 text-sm font-semibold mb-2">6. 주요 자녀 양육(등하교, 병원 등)에 대한 부담은 어느 정도라고 느끼십니까?</label>
+                        <div class="radio-group flex flex-wrap">
+                            <label><input type="radio" name="childcare_burden" value="1"> ① 전혀 부담 없음</label>
+                            <label><input type="radio" name="childcare_burden" value="2"> ② 약간 부담 있음</label>
+                            <label><input type="radio" name="childcare_burden" value="3"> ③ 보통</label>
+                            <label><input type="radio" name="childcare_burden" value="4"> ④ 부담되는 편임</label>
+                            <label><input type="radio" name="childcare_burden" value="5"> ⑤ 매우 부담됨</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-800 text-sm font-semibold mb-2">7. 자녀가 다니는 학원(예체능 포함)은 총 몇 개입니까? (자녀가 여러 명일 경우 평균)</label>
+                        <div class="radio-group flex flex-wrap">
+                            <label><input type="radio" name="after_school_count" value="0"> ① 없음</label>
+                            <label><input type="radio" name="after_school_count" value="1"> ② 1개</label>
+                            <label><input type="radio" name="after_school_count" value="2"> ③ 2개</label>
+                            <label><input type="radio" name="after_school_count" value="3"> ④ 3개</label>
+                            <label><input type="radio" name="after_school_count" value="4+"> ⑤ 4개 이상</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 2. 근무 환경</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 근무 환경에 관한 질문입니다.</p>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">8. 현재 근무지:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="work_location" value="city_metro" required> ① 특별시/광역시</label>
+                        <label><input type="radio" name="work_location" value="city"> ② 시(市) 지역</label>
+                        <label><input type="radio" name="work_location" value="rural"> ③ 군(郡)/농어촌 지역</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">9. 현재 근무직:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="work_role" value="external" required> ① 외근 (화재진압, 구조, 구급)</label>
+                        <label><input type="radio" name="work_role" value="internal"> ② 내근 (행정)</label>
+                        <label><input type="radio" name="work_role" value="both"> ③ 둘 다 수행</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">10. 평균 출퇴근 시간 (편도 기준):</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="commute_time" value="under_30" required> ① 30분 미만</label>
+                        <label><input type="radio" name="commute_time" value="30_60"> ② 30분 ~ 1시간 미만</label>
+                        <label><input type="radio" name="commute_time" value="60_90"> ③ 1시간 ~ 1시간 30분 미만</label>
+                        <label><input type="radio" name="commute_time" value="over_90"> ④ 1시간 30분 이상</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 3. 출동 환경</h2>
+                <p class="text-gray-700 mb-6">※ 외근 근무자 또는 출동 업무를 겸하는 분만 응답해 주십시오.</p>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="monthly_dispatch_count">11. 월 평균 출동 횟수는 어느 정도입니까?:</label>
+                    <input type="number" id="monthly_dispatch_count" name="monthly_dispatch_count" min="0" class="w-full border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">12. 귀하의 주된 출동 유형은 무엇입니까? (가장 비중이 높은 것 하나 선택)</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="main_dispatch_type" value="fire"> ① 화재</label>
+                        <label><input type="radio" name="main_dispatch_type" value="rescue"> ② 구조</label>
+                        <label><input type="radio" name="main_dispatch_type" value="first_aid"> ③ 구급</label>
+                        <label><input type="radio" name="main_dispatch_type" value="life_safety"> ④ 생활안전출동</label>
+                        <label><input type="radio" name="main_dispatch_type" value="etc"> ⑤ 기타</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">13. 참혹한 사고 현장(사망, 심각한 신체 훼손 등)에 노출되는 빈도는 어느 정도입니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="trauma_exposure_frequency" value="1"> ① 거의 없음</label>
+                        <label><input type="radio" name="trauma_exposure_frequency" value="2"> ② 가끔 있음</label>
+                        <label><input type="radio" name="trauma_exposure_frequency" value="3"> ③ 월 1~2회</label>
+                        <label><input type="radio" name="trauma_exposure_frequency" value="4"> ④ 주 1~2회</label>
+                        <label><input type="radio" name="trauma_exposure_frequency" value="5"> ⑤ 거의 매일</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 4. 조직 문화 및 관계적 요인</h2>
+                <p class="text-gray-700 mb-6">다음 문항들은 귀하가 경험하는 조직 문화 및 대인관계에 대한 질문입니다. 각 문항을 읽고 귀하의 생각과 가장 가까운 곳에 체크(✓)해 주십시오. (척도: ① 전혀 그렇지 않다 ② 그렇지 않다 ③ 보통이다 ④ 그렇다 ⑤ 매우 그렇다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>14. 나는 선임(사수)으로부터 업무에 필요한 지식과 기술을 충분히 배우고 있다.</td>
+                                <td class="text-center"><input type="radio" name="q14" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q14" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q14" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q14" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q14" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>15. 나의 선임(사수)은 내가 어려움을 겪을 때 정서적으로 지지해 준다.</td>
+                                <td class="text-center"><input type="radio" name="q15" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q15" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q15" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q15" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q15" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>16. 우리 팀(부서)은 팀원 간의 소통이 원활하고 분위기가 좋은 편이다.</td>
+                                <td class="text-center"><input type="radio" name="q16" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q16" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q16" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q16" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q16" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>17. 위급 상황 발생 시, 나는 우리 팀원들을 신뢰하고 의지할 수 있다.</td>
+                                <td class="text-center"><input type="radio" name="q17" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q17" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q17" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q17" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q17" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>18. 우리 조직은 업무 성과나 포상에 있어 공정하게 운영된다고 생각한다.</td>
+                                <td class="text-center"><input type="radio" name="q18" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q18" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q18" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q18" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q18" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>19. 우리 조직은 승진이나 보직 이동에 있어 합리적인 기준을 가지고 있다.</td>
+                                <td class="text-center"><input type="radio" name="q19" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q19" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q19" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q19" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q19" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 5. 직무 및 훈련 관련 요인</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 직무 및 훈련 환경에 대한 질문입니다. (척도: ① 전혀 그렇지 않다 ② 그렇지 않다 ③ 보통이다 ④ 그렇다 ⑤ 매우 그렇다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20. 현재의 교대 근무 방식은 나의 신체적 피로를 가중시킨다.</td>
+                                <td class="text-center"><input type="radio" name="q20" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q20" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q20" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q20" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q20" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>21. 교대 근무로 인해 가족이나 친구와 함께 보낼 시간이 부족하다.</td>
+                                <td class="text-center"><input type="radio" name="q21" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q21" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q21" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q21" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q21" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>22. 소방학교에서 받은 훈련은 실제 현장 활동에 충분한 도움이 된다.</td>
+                                <td class="text-center"><input type="radio" name="q22" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q22" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q22" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q22" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q22" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>23. 나는 현장 활동에 필요한 최신 기술이나 지식에 대한 교육 기회가 충분하다고 생각한다.</td>
+                                <td class="text-center"><input type="radio" name="q23" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q23" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q23" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q23" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q23" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>24. 나는 현장 활동 시 사용하는 개인 보호 장비가 나의 안전을 충분히 지켜준다고 믿는다.</td>
+                                <td class="text-center"><input type="radio" name="q24" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q24" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q24" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q24" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q24" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>25. 우리 팀(소방서)은 직무 수행에 필요한 장비나 자원이 충분히 갖추어져 있다.</td>
+                                <td class="text-center"><input type="radio" name="q25" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q25" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q25" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q25" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q25" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 6. 개인의 신체적 속성 및 건강 상태</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 신체적 속성 및 건강 상태에 대한 질문입니다.</p>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">26. 귀하는 현재 동료들과 비교했을 때, 본인의 체력 수준이 어느 정도라고 생각하십니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="physical_fitness_level" value="1" required> ① 매우 낮음</label>
+                        <label><input type="radio" name="physical_fitness_level" value="2"> ② 낮은 편</label>
+                        <label><input type="radio" name="physical_fitness_level" value="3"> ③ 보통</label>
+                        <label><input type="radio" name="physical_fitness_level" value="4"> ④ 높은 편</label>
+                        <label><input type="radio" name="physical_fitness_level" value="5"> ⑤ 매우 높음</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">27. 귀하는 직무 수행에 필요한 체력을 기르기 위해, 주 몇 회 이상 규칙적인 운동을 하십니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="exercise_frequency" value="0" required> ① 주 0회</label>
+                        <label><input type="radio" name="exercise_frequency" value="1"> ② 주 1회</label>
+                        <label><input type="radio" name="exercise_frequency" value="2"> ③ 주 2회</label>
+                        <label><input type="radio" name="exercise_frequency" value="3"> ④ 주 3회</label>
+                        <label><input type="radio" name="exercise_frequency" value="4+"> ⑤ 주 4회 이상</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">28. 교대 근무 후, 다음 근무 전까지 충분한 수면으로 피로를 회복한다고 느끼십니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="sufficient_sleep_recovery" value="1" required> ① 전혀 그렇지 않다</label>
+                        <label><input type="radio" name="sufficient_sleep_recovery" value="2"> ② 그렇지 않다</label>
+                        <label><input type="radio" name="sufficient_sleep_recovery" value="3"> ③ 보통이다</label>
+                        <label><input type="radio" name="sufficient_sleep_recovery" value="4"> ④ 그렇다</label>
+                        <label><input type="radio" name="sufficient_sleep_recovery" value="5"> ⑤ 매우 그렇다</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">29. 야간 근무 시, 평균 몇 시간 정도 수면을 취하십니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="night_shift_sleep_hours" value="under_4" required> ① 4시간 미만</label>
+                        <label><input type="radio" name="night_shift_sleep_hours" value="4_5"> ② 4~5시간</label>
+                        <label><input type="radio" name="night_shift_sleep_hours" value="5_6"> ③ 5~6시간</label>
+                        <label><input type="radio" name="night_shift_sleep_hours" value="6_7"> ④ 6~7시간</label>
+                        <label><input type="radio" name="night_shift_sleep_hours" value="over_7"> ⑤ 7시간 이상</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2" for="existing_illness_injury">30. 소방 업무로 인해 악화된 기존의 질병이나 부상이 있습니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="existing_illness_injury" value="yes" required> ① 예</label>
+                        <label><input type="radio" name="existing_illness_injury" value="no"> ② 아니오</label>
+                    </div>
+                </div>
+
+                <div id="injury_difficulty_question" class="mb-4 hidden">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">31. (위 질문에 '예'라고 답한 경우에만 응답) 업무 중 발생한 부상으로 인해 현재 어려움을 겪고 있습니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="injury_difficulty" value="1"> ① 전혀 어려움 없음</label>
+                        <label><input type="radio" name="injury_difficulty" value="2"> ② 약간 어려움 있음</label>
+                        <label><input type="radio" name="injury_difficulty" value="3"> ③ 보통</label>
+                        <label><input type="radio" name="injury_difficulty" value="4"> ④ 어려움이 있는 편임</label>
+                        <label><input type="radio" name="injury_difficulty" value="5"> ⑤ 매우 어려움</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 7. 업무 환경의 물리적 속성</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 업무 환경의 물리적 속성에 대한 질문입니다. (척도: ① 전혀 그렇지 않다 ② 그렇지 않다 ③ 보통이다 ④ 그렇다 ⑤ 매우 그렇다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>32. 현재 근무하시는 소방서의 휴게(수면) 공간은 피로를 회복하기에 충분히 쾌적하다고 생각하십니까?</td>
+                                <td class="text-center"><input type="radio" name="q32" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q32" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q32" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q32" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q32" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>33. 근무 공간(사무실, 차고 등)의 소음, 온도, 청결 상태에 만족하십니까?</td>
+                                <td class="text-center"><input type="radio" name="q33" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q33" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q33" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q33" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q33" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>34. 현재 지급된 개인 보호 장비(방화복, 헬멧, 공기호흡기 등)가 활동하기에 편하고 몸에 잘 맞는다고 생각하십니까?</td>
+                                <td class="text-center"><input type="radio" name="q34" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q34" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q34" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q34" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q34" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>35. 개인 보호 장비의 무게로 인해 불필요한 체력 소모를 느낀다고 생각하십니까?</td>
+                                <td class="text-center"><input type="radio" name="q35" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q35" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q35" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q35" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q35" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mb-4 mt-6">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">36. 주된 출퇴근 방식은 무엇입니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="commuting_method" value="car" required> ① 자가용</label>
+                        <label><input type="radio" name="commuting_method" value="public_transport"> ② 대중교통</label>
+                        <label><input type="radio" name="commuting_method" value="walk_bike"> ③ 도보/자전거</label>
+                        <label><input type="radio" name="commuting_method" value="etc"> ④ 기타</label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">37. 출퇴근 과정에서 느끼는 신체적 피로도는 어느 정도입니까?</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="commuting_fatigue" value="1" required> ① 전혀 피로하지 않음</label>
+                        <label><input type="radio" name="commuting_fatigue" value="2"> ② 약간 피로함</label>
+                        <label><input type="radio" name="commuting_fatigue" value="3"> ③ 보통</label>
+                        <label><input type="radio" name="commuting_fatigue" value="4"> ④ 피로한 편임</label>
+                        <label><input type="radio" name="commuting_fatigue" value="5"> ⑤ 매우 피로함</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 8. 개인 및 사회·경제적 요인</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 개인적 환경에 대한 질문입니다.</p>
+
+                <div class="mb-4">
+                    <label class="block text-gray-800 text-sm font-semibold mb-2">38. 주거 형태:</label>
+                    <div class="radio-group flex flex-wrap">
+                        <label><input type="radio" name="housing_type" value="own" required> ① 자가</label>
+                        <label><input type="radio" name="housing_type" value="rent"> ② 전/월세</label>
+                        <label><input type="radio" name="housing_type" value="official_residence"> ③ 관사</label>
+                        <label><input type="radio" name="housing_type" value="parents"> ④ 부모님 댁 거주</label>
+                        <label><input type="radio" name="housing_type" value="etc_housing"> ⑤ 기타</label>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>39. 현재 받고 있는 급여(보수)에 대해 전반적으로 만족한다.</td>
+                                <td class="text-center"><input type="radio" name="q39" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q39" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q39" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q39" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q39" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>40. 나는 직무로 인한 스트레스를 나눌 수 있는 가족이나 친구가 있다.</td>
+                                <td class="text-center"><input type="radio" name="q40" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q40" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q40" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q40" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q40" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>41. 나의 가족(또는 친구)은 나의 직업적 어려움을 잘 이해하고 지지해 준다.</td>
+                                <td class="text-center"><input type="radio" name="q41" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q41" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q41" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q41" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q41" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>42. 나는 현장 활동 중 시민(민원인)으로부터 폭언이나 비난을 경험한 적이 있다.</td>
+                                <td class="text-center"><input type="radio" name="q42" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q42" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q42" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q42" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q42" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>43. 시민(민원인)을 상대하는 것은 나에게 많은 감정적 스트레스를 준다.</td>
+                                <td class="text-center"><input type="radio" name="q43" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q43" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q43" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q43" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q43" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 9. 자존감</h2>
+                <p class="text-gray-700 mb-6">다음 문항들은 자기 자신에 대한 귀하의 생각과 감정을 묻는 질문입니다. 각 문항을 읽고 귀하의 생각과 가장 가까운 곳에 체크(✓)해 주십시오. (척도: ① 전혀 그렇지 않다 ② 그렇지 않다 ③ 보통이다 ④ 그렇다 ⑤ 매우 그렇다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>44. 나는 나 자신을 가치 있는 사람이라고 생각한다.</td>
+                                <td class="text-center"><input type="radio" name="q44" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q44" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q44" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q44" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q44" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>45. 나는 다른 사람만큼 유능하다고 생각한다.</td>
+                                <td class="text-center"><input type="radio" name="q45" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q45" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q45" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q45" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q45" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>46. 전반적으로 나는 나 자신에게 만족한다.</td>
+                                <td class="text-center"><input type="radio" name="q46" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q46" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q46" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q46" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q46" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>47. 나는 내 자신을 존중한다.</td>
+                                <td class="text-center"><input type="radio" name="q47" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q47" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q47" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q47" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q47" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>48. 나는 여러 면에서 나 자신의 장점을 가지고 있다고 생각한다.</td>
+                                <td class="text-center"><input type="radio" name="q48" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q48" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q48" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q48" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q48" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>49. 나는 때때로 내가 쓸모없는 사람이라고 느낀다. (역채점)</td>
+                                <td class="text-center"><input type="radio" name="q49" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q49" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q49" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q49" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q49" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>50. 나는 내가 별 볼 일 없는 사람이라고 생각한다. (역채점)</td>
+                                <td class="text-center"><input type="radio" name="q50" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q50" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q50" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q50" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q50" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>51. 나는 내가 다른 사람들보다 부족하다고 느낀다. (역채점)</td>
+                                <td class="text-center"><input type="radio" name="q51" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q51" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q51" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q51" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q51" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>52. 나는 나 자신에 대해 부정적인 태도를 가지고 있다. (역채점)</td>
+                                <td class="text-center"><input type="radio" name="q52" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q52" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q52" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q52" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q52" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>53. 나는 나 자신을 실패자라고 생각한다. (역채점)</td>
+                                <td class="text-center"><input type="radio" name="q53" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q53" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q53" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q53" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q53" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 10. 우울감</h2>
+                <p class="text-gray-700 mb-6">다음 문항들은 지난 일주일 동안 귀하가 경험했던 감정과 상태에 대한 질문입니다. 각 문항을 읽고 귀하의 생각과 가장 가까운 곳에 체크(✓)해 주십시오. (척도: ① 거의 없었다 ② 가끔 있었다 ③ 종종 있었다 ④ 자주 있었다 ⑤ 거의 항상 그랬다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>54. 나는 슬프거나 우울하다고 느꼈다.</td>
+                                <td class="text-center"><input type="radio" name="q54" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q54" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q54" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q54" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q54" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>55. 나는 매사에 흥미를 잃고 즐거움을 느끼지 못했다.</td>
+                                <td class="text-center"><input type="radio" name="q55" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q55" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q55" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q55" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q55" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>56. 나는 잠을 잘 수 없거나 너무 많이 잤다.</td>
+                                <td class="text-center"><input type="radio" name="q56" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q56" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q56" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q56" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q56" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>57. 나는 식욕이 없거나 너무 많이 먹었다.</td>
+                                <td class="text-center"><input type="radio" name="q57" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q57" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q57" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q57" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q57" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>58. 나는 피곤하고 기운이 없었다.</td>
+                                <td class="text-center"><input type="radio" name="q58" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q58" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q58" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q58" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q58" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>59. 나는 집중하기 어렵거나 결정을 내리기 힘들었다.</td>
+                                <td class="text-center"><input type="radio" name="q59" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q59" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q59" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q59" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q59" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>60. 나는 죄책감을 느끼거나 내가 쓸모없다고 생각했다.</td>
+                                <td class="text-center"><input type="radio" name="q60" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q60" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q60" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q60" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q60" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>61. 나는 불안하고 초조했다.</td>
+                                <td class="text-center"><input type="radio" name="q61" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q61" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q61" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q61" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q61" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>62. 나는 죽고 싶다는 생각을 하거나 나 자신을 해치고 싶었다.</td>
+                                <td class="text-center"><input type="radio" name="q62" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q62" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q62" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q62" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q62" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>63. 나는 미래에 대해 희망이 없다고 느꼈다.</td>
+                                <td class="text-center"><input type="radio" name="q63" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q63" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q63" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q63" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q63" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="text-2xl font-bold mb-4">Part 11. 직무만족</h2>
+                <p class="text-gray-700 mb-6">다음은 귀하의 '직무만족'에 대하여 느끼는 부분에 관한 질문입니다. 귀하의 의견과 일치하는 곳에 표 해주시기 바랍니다. (척도: ① 전혀 그렇지 않다 ② 그렇지 않다 ③ 보통이다 ④ 그렇다 ⑤ 매우 그렇다)</p>
+                <div class="table-responsive">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">질문 내용</th>
+                                <th class="text-center">①</th>
+                                <th class="text-center">②</th>
+                                <th class="text-center">③</th>
+                                <th class="text-center">④</th>
+                                <th class="text-center">⑤</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>64. 현재 담당하고 있는 업무 자체에 대해 만족한다.</td>
+                                <td class="text-center"><input type="radio" name="q64" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q64" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q64" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q64" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q64" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>65. 사회적 관점뿐만 아니라 개인적으로도 내가 담당하고 있는 업무는 중요하다.</td>
+                                <td class="text-center"><input type="radio" name="q65" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q65" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q65" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q65" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q65" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>66. 내가 수행한 직무수행 결과에 스스로도 만족한다.</td>
+                                <td class="text-center"><input type="radio" name="q66" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q66" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q66" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q66" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q66" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>67. 현재의 직무에 대하여 개인적으로 보람과 애착을 느낀다.</td>
+                                <td class="text-center"><input type="radio" name="q67" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q67" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q67" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q67" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q67" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>68. 현재 담당하고 있는 직무는 삶에 있어서 나의 발전에 도움이 된다.</td>
+                                <td class="text-center"><input type="radio" name="q68" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q68" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q68" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q68" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q68" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>69. 내가 담당하고 있는 직무에 대해 전반적으로 만족한다.</td>
+                                <td class="text-center"><input type="radio" name="q69" value="1" required></td>
+                                <td class="text-center"><input type="radio" name="q69" value="2"></td>
+                                <td class="text-center"><input type="radio" name="q69" value="3"></td>
+                                <td class="text-center"><input type="radio" name="q69" value="4"></td>
+                                <td class="text-center"><input type="radio" name="q69" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button type="submit" class="bg-[#118AB2] hover:bg-[#06D6A0] text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300">설문 제출</button>
+            </div>
+        </form>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">본 설문지는 연구 목적으로만 사용되며, 모든 응답은 익명으로 처리됩니다.</p>
+        </footer>
+    </div>
+
+    <iframe name="no-submit-iframe" style="display:none;"></iframe>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 자녀 양육 관련 질문 표시/숨김 로직
+            const childrenCountInput = document.getElementById('children_count');
+            const childcareQuestions = document.getElementById('childcare_questions');
+
+            function toggleChildcareQuestions() {
+                if (parseInt(childrenCountInput.value) > 0) {
+                    childcareQuestions.classList.remove('hidden');
+                } else {
+                    childcareQuestions.classList.add('hidden');
+                    // 자녀 없는 경우 관련 질문들 초기화 (선택 해제)
+                    document.querySelectorAll('#childcare_questions input[type="radio"]').forEach(radio => radio.checked = false);
+                }
+            }
+
+            childrenCountInput.addEventListener('input', toggleChildcareQuestions);
+            // 페이지 로드 시 초기 상태 확인
+            toggleChildcareQuestions();
+
+            // 부상 경험 관련 질문 표시/숨김 로직
+            const existingIllnessInjuryRadios = document.querySelectorAll('input[name="existing_illness_injury"]');
+            const injuryDifficultyQuestion = document.getElementById('injury_difficulty_question');
+
+            function toggleInjuryDifficultyQuestion() {
+                const selectedValue = document.querySelector('input[name="existing_illness_injury"]:checked')?.value;
+                if (selectedValue === 'yes') {
+                    injuryDifficultyQuestion.classList.remove('hidden');
+                } else {
+                    injuryDifficultyQuestion.classList.add('hidden');
+                    // '아니오' 선택 시 관련 질문 초기화
+                    document.querySelectorAll('#injury_difficulty_question input[type="radio"]').forEach(radio => radio.checked = false);
+                }
+            }
+
+            existingIllnessInjuryRadios.forEach(radio => {
+                radio.addEventListener('change', toggleInjuryDifficultyQuestion);
+            });
+            // 페이지 로드 시 초기 상태 확인
+            toggleInjuryDifficultyQuestion();
+
+
+            const form = document.getElementById('firefighterSurveyForm');
+            form.addEventListener('submit', function(event) {
+                // event.preventDefault(); // Apps Script로 직접 제출하므로 이 줄은 주석 처리 또는 제거
+
+                // 모든 required 필드 검사
+                let allRequiredFilled = true;
+                const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+
+                // 숨겨진 필드는 필수로 체크하지 않도록 예외 처리
+                const hiddenElements = form.querySelectorAll('#childcare_questions.hidden input[required], #injury_difficulty_question.hidden input[required]');
+                
+                // 임시로 required 속성을 제거하여 유효성 검사에서 제외
+                const tempRemovedRequired = [];
+                hiddenElements.forEach(input => {
+                    if (input.hasAttribute('required')) {
+                        input.removeAttribute('required');
+                        tempRemovedRequired.push(input);
+                    }
+                });
+
+                // 폼 자체의 기본 유효성 검사 트리거
+                if (!form.checkValidity()) {
+                    allRequiredFilled = false;
+                    // 필요한 경우 사용자에게 커스텀 알림을 표시 (브라우저 기본 알림 외)
+                    // alert('모든 필수 항목에 응답해 주세요!');
+                }
+
+                // 임시로 제거했던 required 속성 다시 추가
+                tempRemovedRequired.forEach(input => {
+                    input.setAttribute('required', '');
+                });
+
+                if (!allRequiredFilled) {
+                    event.preventDefault(); // 유효성 검사 실패 시 제출 방지
+                    alert('모든 필수 항목에 응답해 주세요!'); // 커스텀 모달로 대체 권장
+                    return;
+                }
+
+                // 폼이 Apps Script로 제출된 후, 응답 메시지를 받기 위한 로직 (선택 사항)
+                // Apps Script에서 HTML을 반환하므로, iframe을 통해 메시지를 받을 수 있습니다.
+                // 이 예제에서는 Apps Script에서 alert를 포함한 HTML을 반환하므로,
+                // 별도의 JavaScript 로직 없이 iframe이 메시지를 처리합니다.
+                
+                // 제출 후 폼 초기화 (선택 사항, Apps Script에서 history.back()으로 페이지 새로고침 가능)
+                // form.reset(); 
+            });
+        });
+    </script>
+</body>
+</html>
