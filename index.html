@@ -156,15 +156,12 @@
                     const isLikert = item.isLikert || section.isLikert;
                     const conditionalClass = item.isConditional ? 'hidden' : '';
                     const conditionalId = item.id ? `id="${item.id}"` : '';
-
                     if (item.type === 'number') {
                         sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200"><label class="block font-semibold text-gray-800 mb-2" for="${item.name}">${item.text}</label><input type="number" id="${item.name}" name="${item.name}" min="0" class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm"></div>`;
                         return;
                     }
-                    
                     let optionContainerClasses = "flex flex-col sm:grid sm:grid-cols-5 sm:gap-x-4 gap-y-2";
                     if (item.options && item.options.length < 5) { optionContainerClasses = "flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8"; }
-
                     sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200 ${conditionalClass}" ${conditionalId}><p class="font-semibold text-gray-800">${item.text}</p><div class="${optionContainerClasses} mt-3">`;
                     let options = [];
                     let values = [];
@@ -182,7 +179,7 @@
                 container.insertAdjacentHTML('beforeend', sectionHtml);
             });
 
-            // Conditional question logic
+            // --- *** FINAL FIX: Conditional logic updated to use "q" numbers *** ---
             const childrenCountInput = document.getElementById('q5');
             const childcareQuestions = document.getElementById('childcare_questions');
             function toggleChildcareQuestions() {
@@ -211,6 +208,8 @@
             document.body.addEventListener('change', function(event) {
                 if (event.target.name === 'q30') { toggleInjuryDifficultyQuestion(); }
             });
+
+            // Initial checks on page load
             toggleChildcareQuestions();
             toggleInjuryDifficultyQuestion();
         });
