@@ -28,7 +28,8 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <div class="container w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+    <!-- *** 핵심 수정: max-w-4xl -> max-w-5xl 로 변경하여 PC 화면에서의 최대 너비를 넓혔습니다. *** -->
+    <div class="container w-full max-w-5xl mx-auto p-4 sm:p-6 md:p-8">
         <header class="text-center mb-8 md:mb-12">
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#073B4C] mb-4 leading-tight">저연차 소방공무원 직무만족, 자존감, 우울감에 영향을 미치는 요인 분석</h1>
             <p class="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed text-left break-keep">
@@ -42,7 +43,6 @@
                 <div class="space-y-6">
                     <div>
                         <label class="block text-gray-800 font-semibold mb-2">1. 성별:</label>
-                        <!-- *** 핵심 수정: sm:gap-x-6 -> sm:gap-x-8 로 변경하여 간격 넓힘 *** -->
                         <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8 mt-2">
                             <label class="inline-flex items-center cursor-pointer"><input type="radio" name="gender" value="1" required class="form-radio h-5 w-5"> <span class="ml-2">남성</span></label>
                             <label class="inline-flex items-center cursor-pointer"><input type="radio" name="gender" value="2" class="form-radio h-5 w-5"> <span class="ml-2">여성</span></label>
@@ -74,7 +74,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">자녀 양육 및 교육 관련</h3>
                         <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <p class="font-semibold text-gray-800">6. 주요 자녀 양육(등하교, 병원 등)에 대한 부담은 어느 정도라고 느끼십니까?</p>
-                            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8 mt-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4 mt-3">
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 전혀 부담 없음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 약간 부담 있음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 보통</span></label>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <p class="font-semibold text-gray-800">7. 자녀가 다니는 학원(예체능 포함)은 총 몇 개입니까? (자녀가 여러 명일 경우 평균)</p>
-                             <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8 mt-3">
+                             <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4 mt-3">
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 없음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 1개</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 2개</span></label>
@@ -163,9 +163,11 @@
                         return;
                     }
                     
-                    // *** 핵심 수정: 간격을 sm:gap-x-8로 늘려 공간 확보 ***
-                    let optionContainerClasses = "flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8";
-                    
+                    let optionContainerClasses = "flex flex-col sm:grid sm:grid-cols-5 sm:gap-x-4 gap-y-2";
+                    if (item.options && item.options.length < 5) {
+                        optionContainerClasses = "flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-8";
+                    }
+
                     sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200 ${conditionalClass}" ${conditionalId}><p class="font-semibold text-gray-800">${item.q}. ${item.text}</p><div class="${optionContainerClasses} mt-3">`;
                     let options = [];
                     let values = [];
