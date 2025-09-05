@@ -163,7 +163,6 @@
                     }
                     
                     let optionContainerClasses = "flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6";
-                    // 5개 이상 보기 항목은 그리드 레이아웃 적용
                     if (isLikert || (item.options && item.options.length >= 5)) {
                         optionContainerClasses = "grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4";
                     }
@@ -179,7 +178,8 @@
                         values = item.values;
                     }
                     options.forEach((opt, index) => {
-                        sectionHtml += `<label class="inline-flex items-center cursor-pointer"><input type="radio" name="${item.name}" value="${values[index]}" required class="form-radio h-5 w-5"><span class="ml-2 text-gray-700">${opt}</span></label>`;
+                        // *** FINAL FIX: Added whitespace-nowrap to ALL options for consistency ***
+                        sectionHtml += `<label class="inline-flex items-center cursor-pointer"><input type="radio" name="${item.name}" value="${values[index]}" required class="form-radio h-5 w-5"><span class="ml-2 text-gray-700 sm:whitespace-nowrap">${opt}</span></label>`;
                     });
                     sectionHtml += `</div></div>`;
                 });
