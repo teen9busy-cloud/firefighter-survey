@@ -73,7 +73,7 @@
                         <h3 class="text-lg font-semibold text-gray-900">자녀 양육 및 교육 관련</h3>
                         <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <p class="font-semibold text-gray-800">6. 주요 자녀 양육(등하교, 병원 등)에 대한 부담은 어느 정도라고 느끼십니까?</p>
-                            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4 mt-3">
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 전혀 부담 없음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 약간 부담 있음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 보통</span></label>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <p class="font-semibold text-gray-800">7. 자녀가 다니는 학원(예체능 포함)은 총 몇 개입니까? (자녀가 여러 명일 경우 평균)</p>
-                             <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">
+                             <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4 mt-3">
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 없음</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 1개</span></label>
                                 <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 2개</span></label>
@@ -156,11 +156,19 @@
                     const isLikert = item.isLikert || section.isLikert;
                     const conditionalClass = item.isConditional ? 'hidden' : '';
                     const conditionalId = item.id ? `id="${item.id}"` : '';
+
                     if (item.type === 'number') {
                         sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200"><label class="block font-semibold text-gray-800 mb-2" for="${item.name}">${item.q}. ${item.text}</label><input type="number" id="${item.name}" name="${item.name}" min="0" class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm"></div>`;
                         return;
                     }
-                    sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200 ${conditionalClass}" ${conditionalId}><p class="font-semibold text-gray-800">${item.q}. ${item.text}</p><div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">`;
+                    
+                    let optionContainerClasses = "flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6";
+                    // 5개 이상 보기 항목은 그리드 레이아웃 적용
+                    if (isLikert || (item.options && item.options.length >= 5)) {
+                        optionContainerClasses = "grid grid-cols-1 sm:grid-cols-5 gap-y-2 sm:gap-x-4";
+                    }
+
+                    sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200 ${conditionalClass}" ${conditionalId}><p class="font-semibold text-gray-800">${item.q}. ${item.text}</p><div class="${optionContainerClasses} mt-3">`;
                     let options = [];
                     let values = [];
                     if (isLikert) {
@@ -171,13 +179,15 @@
                         values = item.values;
                     }
                     options.forEach((opt, index) => {
-                        sectionHtml += `<label class="inline-flex items-center cursor-pointer"><input type="radio" name="${item.name}" value="${values[index]}" required class="form-radio h-5 w-5"><span class="ml-2 text-gray-700 sm:whitespace-nowrap">${opt}</span></label>`;
+                        sectionHtml += `<label class="inline-flex items-center cursor-pointer"><input type="radio" name="${item.name}" value="${values[index]}" required class="form-radio h-5 w-5"><span class="ml-2 text-gray-700">${opt}</span></label>`;
                     });
                     sectionHtml += `</div></div>`;
                 });
                 sectionHtml += `</div></div>`;
                 container.insertAdjacentHTML('beforeend', sectionHtml);
             });
+
+            // Conditional question logic
             const childrenCountInput = document.getElementById('children_count');
             const childcareQuestions = document.getElementById('childcare_questions');
             function toggleChildcareQuestions() {
@@ -191,6 +201,7 @@
                 }
             }
             childrenCountInput.addEventListener('input', toggleChildcareQuestions);
+
             function toggleInjuryDifficultyQuestion() {
                 const selectedValue = document.querySelector('input[name="existing_illness_injury"]:checked')?.value;
                 const injuryDifficultyQuestion = document.getElementById('injury_difficulty_question');
@@ -239,16 +250,14 @@
             const formData = new FormData(form);
             const data = {};
             formData.forEach((value, key) => {
-                // Ensure number fields are sent as numbers
                 const inputElement = form.querySelector(`[name="${key}"]`);
                 if (inputElement && inputElement.type === 'number' && value !== '') {
                     data[key] = Number(value);
-                } else if (value !== '') { // Do not send empty fields
+                } else if (value !== '') {
                     data[key] = value;
                 }
             });
 
-            // Convert numeric string values from radio buttons to numbers
             for (const key in data) {
                 if (!isNaN(data[key]) && typeof data[key] === 'string' && data[key].trim() !== '') {
                    const num = Number(data[key]);
@@ -290,3 +299,4 @@
     </script>
 </body>
 </html>
+
