@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설문 조사 응답 요청</title>
+
+    <!-- === 링크 미리보기(Open Graph & Twitter Card) 메타 태그 시작 === -->
+    <meta property="og:title" content="설문 조사 응답을 요청드립니다">
+    <meta property="og:description" content="저연차 소방공무원의 직무만족도 향상을 위한 소중한 의견을 들려주세요.">
+    <meta property="og:image" content="https://placehold.co/1200x630/073B4C/FFFFFF?text=%EC%84%A4%EB%AC%B8%20%EC%9D%91%EB%8B%B5%20%EC%9A%94%EC%B2%AD">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- === 링크 미리보기(Open Graph & Twitter Card) 메타 태그 끝 === -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .form-radio, .form-checkbox { color: #118AB2; }
+        .form-radio:focus, .form-checkbox:focus, input:focus, select:focus {
+            --tw-ring-color: rgba(17, 138, 178, 0.3); border-color: #118AB2;
+            box-shadow: 0 0 0 2px var(--tw-ring-color); outline: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#073B4C] mb-4 leading-tight">저연차 소방공무원 직무만족, 자존감, 우울감에 영향을 미치는 요인 분석</h1>
+            <p class="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed text-left break-keep">
+                안녕하십니까? 찾아가는 상담실은 소방공무원의 저연차 소방공무원의 근무환경 및 생활환경과 심리적 환경에 대해 연구를 실시하고 있습니다. 다소 번거로우시더라도, 보다 나은 상담 서비스를 제공하기 위한 과정이라 이해해 주시면 감사하겠습니다. 여러분의 의견은 상담 서비스 질의 향상과 현장 실태 파악을 위한 귀중한 자료가 되오니 본 조사에 적극적으로 참여하여 주시면 대단히 감사하겠습니다. 참고로 응답내용은 통계자료로만 이용되며, 응답내용에 대해서는 통계법 33조 및 제34조에 의거 비밀이 보장됨을 약속드립니다. 감사합니다.
+            </p>
+        </header>
+
+        <form id="firefighterSurveyForm" class="space-y-8">
+            <div class="form-section bg-white p-6 rounded-2xl shadow-md">
+                <h2 class="text-xl md:text-2xl font-bold mb-6 pb-3 border-b border-gray-200">Part 1. 인구통계학적 및 기본 정보</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-gray-800 font-semibold mb-2">1. 성별:</label>
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-2">
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="gender" value="1" required class="form-radio h-5 w-5"> <span class="ml-2">남성</span></label>
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="gender" value="2" class="form-radio h-5 w-5"> <span class="ml-2">여성</span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 font-semibold mb-2" for="age">2. 만 나이:</label>
+                        <input type="number" id="age" name="age" min="19" max="60" class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 font-semibold mb-2">3. 소방 임용 년차:</label>
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-2">
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="years_of_service" value="1" required class="form-radio h-5 w-5"> <span class="ml-2">1년차</span></label>
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="years_of_service" value="2" class="form-radio h-5 w-5"> <span class="ml-2">2년차</span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 font-semibold mb-2">4. 결혼 여부:</label>
+                        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-2">
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="marital_status" value="1" required class="form-radio h-5 w-5"> <span class="ml-2">미혼</span></label>
+                            <label class="inline-flex items-center cursor-pointer"><input type="radio" name="marital_status" value="2" class="form-radio h-5 w-5"> <span class="ml-2">기혼</span></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 font-semibold mb-2" for="children_count">5. 총 자녀 수 (자녀가 없는 경우 '0'으로 기입):</label>
+                        <input type="number" id="children_count" name="children_count" min="0" class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm" required>
+                    </div>
+                    <div id="childcare_questions" class="hidden transition-all duration-500 space-y-6 pt-4 border-t border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">자녀 양육 및 교육 관련</h3>
+                        <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">6. 주요 자녀 양육(등하교, 병원 등)에 대한 부담은 어느 정도라고 느끼십니까?</p>
+                            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 전혀 부담 없음</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 약간 부담 있음</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 보통</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="4" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">④ 부담되는 편임</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="childcare_burden" value="5" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">⑤ 매우 부담됨</span></label>
+                            </div>
+                        </div>
+                        <div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">7. 자녀가 다니는 학원(예체능 포함)은 총 몇 개입니까? (자녀가 여러 명일 경우 평균)</p>
+                             <div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="1" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">① 없음</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="2" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">② 1개</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="3" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">③ 2개</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="4" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">④ 3개</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="after_school_count" value="5" class="form-radio h-5 w-5"><span class="ml-2 sm:whitespace-nowrap">⑤ 4개 이상</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dynamic-questions-container" class="space-y-8"></div>
+
+            <div class="form-section bg-white p-6 rounded-2xl shadow-md">
+                <h2 class="text-xl md:text-2xl font-bold mb-4">감사 상품 발송 안내 (선택)</h2>
+                <div class="space-y-4">
+                    <p class="text-gray-600">설문응답에 대한 소정의 상품을 드리기 위해 연락처를 남겨주시면 감사하겠습니다. (원치 않으시면 비워두셔도 됩니다.)</p>
+                    <div>
+                         <label class="block text-gray-800 font-semibold mb-2" for="contact_info">연락처 (전화번호 또는 이메일)</label>
+                        <input type="text" id="contact_info" name="contact_info" placeholder="전화번호 또는 이메일 주소를 입력해주세요." class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <button type="submit" id="submitButton" class="submit-button bg-[#118AB2] hover:bg-[#06D6A0] text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">
+                    설문 제출
+                </button>
+            </div>
+        </form>
+
+        <div id="completionMessage" class="hidden text-center bg-white p-8 sm:p-16 rounded-2xl shadow-md">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06D6A0]">설문에 응답해 주셔서 감사합니다.</h2>
+            <p class="mt-4 text-base sm:text-xl text-gray-700">귀하의 소중한 의견에 진심으로 감사드립니다.</p>
+        </div>
+
+        <footer class="text-center mt-12 sm:mt-16 py-8 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">본 설문지는 연구 목적으로만 사용되며, 모든 응답은 익명으로 처리됩니다.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // --- Airtable API Configuration ---
+        const AIRTABLE_TOKEN = "patZYsrvRsgCD0pUW.a5fa49e0657138ba3716cd9cde5e23443cd94c67431ff85414316106f9be6ac5";
+        const BASE_ID = "apprT6qk8SirSkHmu";
+        const TABLE_NAME = "Table 1";
+        const AIRTABLE_API_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`;
+
+        document.getElementById('firefighterSurveyForm').addEventListener('submit', function(event) { submitToAirtable(event); });
+
+        const questions = [
+            { part: 2, title: '근무 환경', items: [ { q: 8, name: 'work_location', text: '현재 근무지:', options: ['① 시(市) 지역', '② 군(郡)/농어촌 지역'], values: [1, 2] }, { q: 9, name: 'work_role', text: '현재 근무직:', options: ['① 외근 (화재진압, 구조, 구급)', '② 내근 (행정)', '③ 둘 다 수행'], values: [1, 2, 3] }, { q: 10, name: 'commute_time', text: '평균 출퇴근 시간 (편도 기준):', options: ['① 30분 미만', '② 30분 ~ 1시간 미만', '③ 1시간 ~ 1시간 30분 미만', '④ 1시간 30분 이상'], values: [1, 2, 3, 4] }, ]},
+            { part: 3, title: '출동 환경', preamble: '※ 외근 근무자 또는 출동 업무를 겸하는 분만 응답해 주십시오.', items: [ { type: 'number', q: 11, name: 'monthly_dispatch_count', text: '월 평균 출동 횟수는 어느 정도입니까?:' }, { q: 12, name: 'main_dispatch_type', text: '귀하의 주된 출동 유형은 무엇입니까? (가장 비중이 높은 것 하나 선택)', options: ['① 화재', '② 구조', '③ 구급', '④ 생활안전출동', '⑤ 기타'], values: [1, 2, 3, 4, 5] }, { q: 13, name: 'trauma_exposure_frequency', text: '참혹한 사고 현장(사망, 심각한 신체 훼손 등)에 노출되는 빈도는 어느 정도입니까?', options: ['① 거의 없음', '② 가끔 있음', '③ 월 1~2회', '④ 주 1~2회', '⑤ 거의 매일'], values: [1, 2, 3, 4, 5] }, ]},
+            { part: 4, title: '조직 문화 및 관계적 요인', preamble: '다음 문항들은 귀하가 경험하는 조직 문화 및 대인관계에 대한 질문입니다.', isLikert: true, items: [ { q: 14, name: 'q14', text: '나는 선임(사수)으로부터 업무에 필요한 지식과 기술을 충분히 배우고 있다.' }, { q: 15, name: 'q15', text: '나의 선임(사수)은 내가 어려움을 겪을 때 정서적으로 지지해 준다.' }, { q: 16, name: 'q16', text: '우리 팀(부서)은 팀원 간의 소통이 원활하고 분위기가 좋은 편이다.' }, { q: 17, name: 'q17', text: '위급 상황 발생 시, 나는 우리 팀원들을 신뢰하고 의지할 수 있다.' }, { q: 18, name: 'q18', text: '우리 조직은 업무 성과나 포상에 있어 공정하게 운영된다고 생각한다.' }, { q: 19, name: 'q19', text: '우리 조직은 승진이나 보직 이동에 있어 합리적인 기준을 가지고 있다.' }, ]},
+            { part: 5, title: '직무 및 훈련 관련 요인', preamble: '다음은 귀하의 직무 및 훈련 환경에 대한 질문입니다.', isLikert: true, items: [ { q: 20, name: 'q20', text: '현재의 교대 근무 방식은 나의 신체적 피로를 가중시킨다.' }, { q: 21, name: 'q21', text: '교대 근무로 인해 가족이나 친구과 함께 보낼 시간이 부족하다.' }, { q: 22, name: 'q22', text: '소방학교에서 받은 훈련은 실제 현장 활동에 충분한 도움이 된다.' }, { q: 23, name: 'q23', text: '나는 현장 활동에 필요한 최신 기술이나 지식에 대한 교육 기회가 충분하다고 생각한다.' }, { q: 24, name: 'q24', text: '나는 현장 활동 시 사용하는 개인 보호 장비가 나의 안전을 충분히 지켜준다고 믿는다.' }, { q: 25, name: 'q25', text: '우리 팀(소방서)은 직무 수행에 필요한 장비나 자원이 충분히 갖추어져 있다.' }, ]},
+            { part: 6, title: '개인의 신체적 속성 및 건강 상태', preamble: '다음은 귀하의 신체적 속성 및 건강 상태에 대한 질문입니다.', items: [ { q: 26, name: 'physical_fitness_level', text: '귀하는 현재 동료들과 비교했을 때, 본인의 체력 수준이 어느 정도라고 생각하십니까?', options: ['① 매우 낮음', '② 낮은 편', '③ 보통', '④ 높은 편', '⑤ 매우 높음'], values: [1,2,3,4,5] }, { q: 27, name: 'exercise_frequency', text: '귀하는 직무 수행에 필요한 체력을 기르기 위해, 주 몇 회 이상 규칙적인 운동을 하십니까?', options: ['① 주 0회', '② 주 1회', '③ 주 2회', '④ 주 3회', '⑤ 주 4회 이상'], values: [1,2,3,4,5] }, { q: 28, name: 'sufficient_sleep_recovery', text: '교대 근무 후, 다음 근무 전까지 충분한 수면으로 피로를 회복한다고 느끼십니까?', isLikert: true }, { q: 29, name: 'night_shift_sleep_hours', text: '야간 근무 시, 평균 몇 시간 정도 수면을 취하십니까?', options: ['① 4시간 미만', '② 4~5시간', '③ 5~6시간', '④ 6~7시간', '⑤ 7시간 이상'], values: [1,2,3,4,5] }, { q: 30, name: 'existing_illness_injury', text: '소방 업무으로 인해 악화된 기존의 질병이나 부상이 있습니까?', options: ['① 예', '② 아니오'], values: [1, 2] }, { q: 31, name: 'injury_difficulty', text: '(위 질문에 \'예\'라고 답한 경우에만 응답) 업무 중 발생한 부상으로 인해 현재 어려움을 겪고 있습니까?', options:['① 전혀 어려움 없음', '② 약간 어려움 있음', '③ 보통', '④ 어려움이 있는 편임', '⑤ 매우 어려움'], values:[1,2,3,4,5], isConditional: true, id: 'injury_difficulty_question' }, ]},
+            { part: 7, title: '업무 환경의 물리적 속성', preamble: '다음은 귀하의 업무 환경의 물리적 속성에 대한 질문입니다.', items: [ { q: 32, name: 'q32', text: '현재 근무하시는 소방서의 휴게(수면) 공간은 피로를 회복하기에 충분히 쾌적하다고 생각하십니까?', isLikert: true }, { q: 33, name: 'q33', text: '근무 공간(사무실, 차고 등)의 소음, 온도, 청결 상태에 만족하십니까?', isLikert: true }, { q: 34, name: 'q34', text: '현재 지급된 개인 보호 장비(방화복, 헬멧, 공기호흡기 등)가 활동하기에 편하고 몸에 잘 맞는다고 생각하십니까?', isLikert: true }, { q: 35, name: 'q35', text: '개인 보호 장비의 무게로 인해 불필요한 체력 소모를 느낀다고 생각하십니까?', isLikert: true }, { q: 36, name: 'commuting_method', text: '주된 출퇴근 방식은 무엇입니까?', options: ['① 자가용', '② 대중교통', '③ 도보/자전거', '④ 기타'], values: [1,2,3,4] }, { q: 37, name: 'commuting_fatigue', text: '출퇴근 과정에서 느끼는 신체적 피로도는 어느 정도입니까?', options:['① 전혀 피로하지 않음', '② 약간 피로함', '③ 보통', '④ 피로한 편임', '⑤ 매우 피로함'], values:[1,2,3,4,5] }, ]},
+            { part: 8, title: '개인 및 사회·경제적 요인', preamble: '다음은 귀하의 개인적 환경에 대한 질문입니다.', items: [ { q: 38, name: 'housing_type', text: '주거 형태:', options: ['① 자가', '② 전/월세', '③ 관사', '④ 부모님 댁 거주', '⑤ 기타'], values: [1, 2, 3, 4, 5] }, { q: 39, name: 'q39', text: '현재 받고 있는 급여(보수)에 대해 전반적으로 만족한다.', isLikert: true }, { q: 40, name: 'q40', text: '나는 직무로 인한 스트레스를 나눌 수 있는 가족이나 친구가 있다.', isLikert: true }, { q: 41, name: 'q41', text: '나의 가족(또는 친구)은 나의 직업적 어려움을 잘 이해하고 지지해 준다.', isLikert: true }, { q: 42, name: 'q42', text: '나는 현장 활동 중 시민(민원인)으로부터 폭언이나 비난을 경험한 적이 있다.', isLikert: true }, { q: 43, name: 'q43', text: '시민(민원인)을 상대하는 것은 나에게 많은 감정적 스트레스를 준다.', isLikert: true }, ]},
+            { part: 9, title: '자존감', preamble: '다음 문항들은 자기 자신에 대한 귀하의 생각과 감정을 묻는 질문입니다.', isLikert: true, items: [ { q: 44, name: 'q44', text: '나는 나 자신을 가치 있는 사람이라고 생각한다.' }, { q: 45, name: 'q45', text: '나는 다른 사람만큼 유능하다고 생각한다.' }, { q: 46, name: 'q46', text: '전반적으로 나는 나 자신에게 만족한다.' }, { q: 47, name: 'q47', text: '나는 내 자신을 존중한다.' }, { q: 48, name: 'q48', text: '나는 여러 면에서 나 자신의 장점을 가지고 있다고 생각한다.' }, { q: 49, name: 'q49', text: '나는 때때로 내가 쓸모없는 사람이라고 느낀다. (역채점)' }, { q: 50, name: 'q50', text: '나는 내가 별 볼 일 없는 사람이라고 생각한다. (역채점)' }, { q: 51, name: 'q51', text: '나는 내가 다른 사람들보다 부족하다고 느낀다. (역채점)' }, { q: 52, name: 'q52', text: '나는 나 자신에 대해 부정적인 태도를 가지고 있다. (역채점)' }, { q: 53, name: 'q53', text: '나는 나 자신을 실패자라고 생각한다. (역채점)' }, ]},
+            { part: 10, title: '우울감', preamble: '다음 문항들은 지난 일주일 동안 귀하가 경험했던 감정과 상태에 대한 질문입니다.', isLikert: true, likertLabels: ['① 거의 없었다', '② 가끔 있었다', '③ 종종 있었다', '④ 자주 있었다', '⑤ 거의 항상 그랬다'], items: [ { q: 54, name: 'q54', text: '나는 슬프거나 우울하다고 느꼈다.' }, { q: 55, name: 'q55', text: '나는 매사에 흥미를 잃고 즐거움을 느끼지 못했다.' }, { q: 56, name: 'q56', text: '나는 잠을 잘 수 없거나 너무 많이 잤다.' }, { q: 57, name: 'q57', text: '나는 식욕이 없거나 너무 많이 먹었다.' }, { q: 58, name: 'q58', text: '나는 피곤하고 기운이 없었다.' }, { q: 59, name: 'q59', text: '나는 집중하기 어렵거나 결정을 내리기 힘들었다.' }, { q: 60, name: 'q60', text: '나는 죄책감을 느끼거나 내가 쓸모없다고 생각했다.' }, { q: 61, name: 'q61', text: '나는 불안하고 초조했다.' }, { q: 62, name: 'q62', text: '나는 죽고 싶다는 생각을 하거나 나 자신을 해치고 싶었다.' }, { q: 63, name: 'q63', text: '나는 미래에 대해 희망이 없다고 느꼈다.' }, ]},
+            { part: 11, title: '직무만족', preamble: '다음은 귀하의 \'직무만족\'에 대하여 느끼는 부분에 관한 질문입니다.', isLikert: true, items: [ { q: 64, name: 'q64', text: '현재 담당하고 있는 업무 자체에 대해 만족한다.' }, { q: 65, name: 'q65', text: '사회적 관점뿐만 아니라 개인적으로도 내가 담당하고 있는 업무는 중요하다.' }, { q: 66, name: 'q66', text: '내가 수행한 직무수행 결과에 스스로도 만족한다.' }, { q: 67, name: 'q67', text: '현재의 직무에 대하여 개인적으로 보람과 애착을 느낀다.' }, { q: 68, name: 'q68', text: '현재 담당하고 있는 직무는 삶에 있어서 나의 발전에 도움이 된다.' }, { q: 69, name: 'q69', text: '내가 담당하고 있는 직무에 대해 전반적으로 만족한다.' }, ]},
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('dynamic-questions-container');
+            const standardLikertLabels = ['① 전혀 그렇지 않다', '② 그렇지 않다', '③ 보통이다', '④ 그렇다', '⑤ 매우 그렇다'];
+            questions.forEach(section => {
+                let sectionHtml = `<div class="form-section bg-white p-6 rounded-2xl shadow-md"><h2 class="text-xl md:text-2xl font-bold mb-2 pb-3 border-b border-gray-200">Part ${section.part}. ${section.title}</h2>${section.preamble ? `<p class="text-gray-600 mb-6">${section.preamble}</p>` : ''}<div class="space-y-6">`;
+                section.items.forEach(item => {
+                    const isLikert = item.isLikert || section.isLikert;
+                    const conditionalClass = item.isConditional ? 'hidden' : '';
+                    const conditionalId = item.id ? `id="${item.id}"` : '';
+                    if (item.type === 'number') {
+                        sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200"><label class="block font-semibold text-gray-800 mb-2" for="${item.name}">${item.q}. ${item.text}</label><input type="number" id="${item.name}" name="${item.name}" min="0" class="w-full max-w-sm mt-1 p-2 border border-gray-300 rounded-lg shadow-sm"></div>`;
+                        return;
+                    }
+                    sectionHtml += `<div class="question-block bg-gray-50 p-4 rounded-lg border border-gray-200 ${conditionalClass}" ${conditionalId}><p class="font-semibold text-gray-800">${item.q}. ${item.text}</p><div class="flex flex-col sm:flex-row sm:flex-wrap gap-y-2 sm:gap-x-6 mt-3">`;
+                    let options = [];
+                    let values = [];
+                    if (isLikert) {
+                        options = section.likertLabels || standardLikertLabels;
+                        values = [1, 2, 3, 4, 5];
+                    } else {
+                        options = item.options;
+                        values = item.values;
+                    }
+                    options.forEach((opt, index) => {
+                        sectionHtml += `<label class="inline-flex items-center cursor-pointer"><input type="radio" name="${item.name}" value="${values[index]}" required class="form-radio h-5 w-5"><span class="ml-2 text-gray-700 sm:whitespace-nowrap">${opt}</span></label>`;
+                    });
+                    sectionHtml += `</div></div>`;
+                });
+                sectionHtml += `</div></div>`;
+                container.insertAdjacentHTML('beforeend', sectionHtml);
+            });
+            const childrenCountInput = document.getElementById('children_count');
+            const childcareQuestions = document.getElementById('childcare_questions');
+            function toggleChildcareQuestions() {
+                const count = parseInt(childrenCountInput.value);
+                if (!isNaN(count) && count > 0) {
+                    childcareQuestions.classList.remove('hidden');
+                    childcareQuestions.querySelectorAll('input[type="radio"]').forEach(radio => radio.required = true);
+                } else {
+                    childcareQuestions.classList.add('hidden');
+                    childcareQuestions.querySelectorAll('input[type="radio"]').forEach(radio => { radio.checked = false; radio.required = false; });
+                }
+            }
+            childrenCountInput.addEventListener('input', toggleChildcareQuestions);
+            function toggleInjuryDifficultyQuestion() {
+                const selectedValue = document.querySelector('input[name="existing_illness_injury"]:checked')?.value;
+                const injuryDifficultyQuestion = document.getElementById('injury_difficulty_question');
+                if (selectedValue === '1') {
+                    injuryDifficultyQuestion.classList.remove('hidden');
+                    injuryDifficultyQuestion.querySelectorAll('input[type="radio"]').forEach(radio => radio.required = true);
+                } else {
+                    injuryDifficultyQuestion.classList.add('hidden');
+                    injuryDifficultyQuestion.querySelectorAll('input[type="radio"]').forEach(radio => { radio.checked = false; radio.required = false; });
+                }
+            }
+            document.body.addEventListener('change', function(event) {
+                if (event.target.name === 'existing_illness_injury') {
+                    toggleInjuryDifficultyQuestion();
+                }
+            });
+            toggleChildcareQuestions();
+            toggleInjuryDifficultyQuestion();
+        });
+
+        function showMessage(message, type = 'info') {
+            const messageBox = document.createElement('div');
+            let bgColor = 'bg-blue-500';
+            if (type === 'success') bgColor = 'bg-green-500';
+            if (type === 'error') bgColor = 'bg-red-500';
+            messageBox.className = `fixed top-5 left-1/2 -translate-x-1/2 px-6 py-3 ${bgColor} text-white rounded-lg shadow-xl z-50`;
+            messageBox.textContent = message;
+            document.body.appendChild(messageBox);
+            setTimeout(() => { messageBox.remove(); }, 3000);
+        }
+
+        async function submitToAirtable(event) {
+            event.preventDefault();
+            const form = document.getElementById('firefighterSurveyForm');
+            const submitButton = document.getElementById('submitButton');
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                showMessage('모든 필수 항목에 답변해주세요.', 'error');
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = '제출 중...';
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                // Ensure number fields are sent as numbers
+                const inputElement = form.querySelector(`[name="${key}"]`);
+                if (inputElement && inputElement.type === 'number' && value !== '') {
+                    data[key] = Number(value);
+                } else if (value !== '') { // Do not send empty fields
+                    data[key] = value;
+                }
+            });
+
+            // Convert numeric string values from radio buttons to numbers
+            for (const key in data) {
+                if (!isNaN(data[key]) && typeof data[key] === 'string' && data[key].trim() !== '') {
+                   const num = Number(data[key]);
+                   if (String(num) === data[key]) {
+                       data[key] = num;
+                   }
+                }
+            }
+
+            try {
+                const response = await fetch(AIRTABLE_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        records: [{ fields: data }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`Airtable Error: ${errorData.error.message}`);
+                }
+                
+                form.classList.add('hidden');
+                document.getElementById('completionMessage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showMessage('설문이 성공적으로 제출되었습니다.', 'success');
+
+            } catch (e) {
+                console.error("Error submitting form: ", e);
+                showMessage('설문 제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = '설문 제출';
+            }
+        };
+    </script>
+</body>
+</html>
